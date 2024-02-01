@@ -18,17 +18,11 @@ public class PracticeFormTest {
     private String email = "some@example.com";
     private String genderType = "Male";
     private String number = "1234567890";
-
-//    private String number() {
-//        Random random = new Random();
-//        long randomNumber = random.nextLong(9999999999L) + 1000000000L;
-//        return Long.toString(randomNumber);
-//    }
     private int monthNumber = 2;
     private int yearNumber = 108;
     private String subjectName = "Physics";
     private String currentAddress = "New York";
-    private String pathToPicture = "D:\\DROP0\\Важное\\IT\\Java\\pic1.jpg";
+    private String pathToPicture = "D:\\DROP0\\Важное\\IT\\Java\\Idea Projects\\Test-task-SDET\\src\\test\\pic1.jpg";
     private int stateVariantNumber = 1;
     private int cityVariantNumber = 1;
 
@@ -59,10 +53,10 @@ public class PracticeFormTest {
     }
 
 
-//    @After
-//    public void after() {
-//        driver.quit();
-//    }
+    @After
+    public void after() {
+        driver.quit();
+    }
 }
 
 

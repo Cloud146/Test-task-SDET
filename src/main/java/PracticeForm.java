@@ -1,10 +1,12 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class PracticeForm {
     private WebDriver driver;
@@ -159,7 +161,6 @@ public class PracticeForm {
             hideAds();
         }
         stateDropDown.click();
-        //driver.findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div[2]/div[2]/form/div[10]/div[2]/div/div[2]/div/div[1]")).click();
         driver.findElement(By.xpath("//*[@id=\"react-select-3-option-" +variantNumber +"\"]")).click();
         return this;
     }
@@ -194,6 +195,12 @@ public class PracticeForm {
         enterState(stateVariantNumber);
         enterCity(cityVariantNumber);
         clickSubmitButton();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        takeScreenshot(driver, "Test-SDET", "D:\\DROP0\\Важное\\IT\\Java\\Idea Projects\\Test-task-SDET\\src\\Screens");
         return this;
     }
 
@@ -228,6 +235,16 @@ public class PracticeForm {
         return stateAndCityText.getText();
     }
 
+
+    public static void takeScreenshot(WebDriver driver, String testName, String pathDir){
+        Date dateNow = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("dd-M-yyyy_hh-mm-ss");
+        String formattedDate = format.format(dateNow);
+        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File targetDir = new File(pathDir);
+        String screenshotName = String.format("%s_%s.png", testName, formattedDate);
+        screenshot.renameTo(new File(targetDir, screenshotName));
+    }
 }
 
 
